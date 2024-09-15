@@ -1,24 +1,26 @@
 import { useContext } from "react"
 import { ActionTypes, IEvent } from "../lib/Types"
 import { Context } from "../lib/Context"
+import { RemoveEvent } from "../lib/Api"
 
 
 interface IProps {
     event: IEvent
 }
-export const Event:React.FC<IProps>  = ({event}) => {
+export const Event: React.FC<IProps> = ({ event }) => {
 
     const context = useContext(Context)
     if (!context) {
         throw new Error("Context not found")
     }
-   
-    const {dispatch} = context
+
+    const { dispatch } = context
 
     const onDelete = () => {
-        dispatch({type: ActionTypes.RemoveEvent, payload: event.id})
+        RemoveEvent(event.id)
+        dispatch({ type: ActionTypes.RemoveEvent, payload: event.id })
     }
-    
+
     return <div>
         <p>event</p>
         <img src={event.cover} />
@@ -27,6 +29,6 @@ export const Event:React.FC<IProps>  = ({event}) => {
         <strong>{event.composer}</strong>
         <p>{event.type}</p>
         <button onClick={onDelete}>Delete</button>
-        
+
     </div>
 }

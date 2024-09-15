@@ -8,5 +8,6 @@ export const getEvents = async (type: FilterTypes = FilterTypes.All): Promise<IE
 }
 
 export const RemoveEvent = async (id: number | string) => {
-    await axios.delete(`http://localhost:3004/events/${id}`)
+    const response = await axios.delete(`http://localhost:3004/events/${id}`)
+    return response.data
 }
