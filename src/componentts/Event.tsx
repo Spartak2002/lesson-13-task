@@ -18,7 +18,7 @@ export const Event: React.FC<IProps> = ({ event }) => {
 
     const onDelete = () => {
         RemoveEvent(event.id)
-        dispatch({ type: ActionTypes.RemoveEvent, payload: event.id })
+            .then(response => dispatch({ type: ActionTypes.RemoveEvent, payload: response.id }))
     }
 
     return <div>
